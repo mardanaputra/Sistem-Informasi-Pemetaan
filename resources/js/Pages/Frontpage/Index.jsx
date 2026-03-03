@@ -44,7 +44,7 @@ export default function HomePage() {
                             target="_blank"
                             className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-center text-white bg-primary/80 rounded-lg hover:bg-primary focus:ring-4 focus:ring-cyan-300"
                         >
-                            Lihat Portofolio
+                            Lihat Website
                             <svg
                                 className="w-5 h-5 ml-2 -mr-1"
                                 fill="currentColor"
