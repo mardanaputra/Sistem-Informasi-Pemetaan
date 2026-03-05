@@ -20,10 +20,10 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: '#056840',
-                second: '#e80a5d',
-                bg: '#ffd6e4',
-            },
+                primary: '#0d4f83',
+                second: '#3f7fb3',
+                bg: '#f3f8fc',
+            }
         },
     },
     safelist: [

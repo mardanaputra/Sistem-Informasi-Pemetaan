@@ -13,12 +13,17 @@ Route::fallback(function () {
 
 // frontpage
 Route::get('/', function () {
-    return Inertia::render('Frontpage/Index');
+    return Inertia::render('Frontpage/Index', [
+        'title' => 'Home',
+    ]);
 })->name('frontpage.home');
 
+// backpage
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Backpage/Dashboard/Index');
+        return Inertia::render('Backpage/Dashboard/Index', [
+            'title' => 'Dashboard',
+        ]);
     })->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

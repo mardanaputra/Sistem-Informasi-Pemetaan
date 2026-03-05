@@ -1,3 +1,4 @@
+import { appName, websiteUrl } from "@/Constants/app";
 import useRegister from "@/Features/Auth/useRegister";
 import { Head, Link } from "@inertiajs/react";
 import { Button, Label, TextInput } from "flowbite-react";
@@ -168,7 +169,7 @@ export default function RegisterPage() {
                                     onChange={(e) =>
                                         setData(
                                             "password_confirmation",
-                                            e.target.value
+                                            e.target.value,
                                         )
                                     }
                                     color={
@@ -203,8 +204,10 @@ export default function RegisterPage() {
                         </div>
                     </form>
                     <div className="mt-2 flex w-full justify-center">
-                        <a href="#" target="_blank">
-                            <p className="text-blue-600">©2025 Nos.Project</p>
+                        <a href={websiteUrl} target="_blank">
+                            <p className="text-blue-600">
+                                ©{new Date().getFullYear()} {appName}
+                            </p>
                         </a>
                     </div>
                 </div>

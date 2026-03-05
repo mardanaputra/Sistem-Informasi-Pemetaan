@@ -1,4 +1,4 @@
-import { appName } from "@/Constants/appName";
+import { appName } from "@/Constants/app";
 import { Link, usePage } from "@inertiajs/react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import React from "react";

@@ -1,3 +1,4 @@
+import { appName } from "@/Constants/app";
 import FrontpageLayout from "../../Layouts/FrontpageLayout";
 
 export default function HomePage() {
@@ -31,16 +32,18 @@ export default function HomePage() {
                         </svg>
                     </a>
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-                        Nos.Project
+                        {appName}
                     </h1>
                     <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-20">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Explicabo nobis mollitia consectetur tenetur quam.
-                        Laboriosam ipsam inventore quia accusantium labore!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Officia ducimus, dolorem ipsa culpa nobis magni
+                        repudiandae expedita amet, dolore dolor corporis harum
+                        beatae blanditiis tempora atque architecto facilis
+                        dolorum sequi!
                     </p>
                     <div className="flex flex-col mb-0 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                         <a
-                            href="https://www.kadekwidiana.my.id"
+                            href="https://kadekwidiana.my.id"
                             target="_blank"
                             className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-center text-white bg-primary/80 rounded-lg hover:bg-primary focus:ring-4 focus:ring-cyan-300"
                         >

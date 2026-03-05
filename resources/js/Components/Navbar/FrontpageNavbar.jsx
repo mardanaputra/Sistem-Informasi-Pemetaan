@@ -1,3 +1,4 @@
+import { appName } from "@/Constants/app";
 import { Link, usePage } from "@inertiajs/react";
 import { Button, Dropdown, DropdownItem } from "flowbite-react";
 import React, { useEffect, useState } from "react";
@@ -29,10 +30,10 @@ export default function FrontpageNavbar() {
                         <img
                             src="/assets/images/logo.png"
                             className="h-6 mr-3 sm:h-9 rounded-full"
-                            alt="Nos.Project Logo"
+                            alt="Logo"
                         />
                         <span className="self-center text-xl font-semibold whitespace-nowrap">
-                            Nos.Project
+                            {appName}
                         </span>
                     </a>
                     <div className="flex items-center lg:order-2">
