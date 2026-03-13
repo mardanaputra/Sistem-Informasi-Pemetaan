@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontpageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -12,11 +13,8 @@ Route::fallback(function () {
 });
 
 // frontpage
-Route::get('/', function () {
-    return Inertia::render('Frontpage/Index', [
-        'title' => 'Home',
-    ]);
-})->name('frontpage.home');
+Route::get('/', [FrontpageController::class, 'index'])->name('frontpage.home');
+Route::get('/maps-static', [FrontpageController::class, 'mapsStatic'])->name('frontpage.maps-static');
 
 // backpage
 Route::middleware(['auth', 'verified'])->group(function () {
