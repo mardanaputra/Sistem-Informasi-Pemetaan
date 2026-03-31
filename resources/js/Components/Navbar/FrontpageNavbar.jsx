@@ -205,6 +205,21 @@ export default function FrontpageNavbar() {
                                     Maps Static
                                 </a>
                             </li>
+                            <li>
+                                <a
+                                    href="/maps-dynamic"
+                                    className={`block py-2 pl-3 pr-4 rounded-sm lg:p-0 ${
+                                        route().current(
+                                            "frontpage.maps-dynamic",
+                                        )
+                                            ? "text-white bg-primary/80 lg:bg-transparent lg:text-primary/80"
+                                            : "text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:border-0 lg:hover:bg-transparent lg:hover:text-primary/80"
+                                    }`}
+                                    aria-current="page"
+                                >
+                                    Maps Dynamic
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontpageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubakController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,6 +16,7 @@ Route::fallback(function () {
 // frontpage
 Route::get('/', [FrontpageController::class, 'index'])->name('frontpage.home');
 Route::get('/maps-static', [FrontpageController::class, 'mapsStatic'])->name('frontpage.maps-static');
+Route::get('/maps-dynamic', [FrontpageController::class, 'mapsDynamic'])->name('frontpage.maps-dynamic');
 
 // backpage
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -27,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/{userId}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('subaks', SubakController::class);
 });
 
 require __DIR__ . '/auth.php';

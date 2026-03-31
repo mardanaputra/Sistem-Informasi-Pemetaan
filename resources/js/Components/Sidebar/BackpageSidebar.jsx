@@ -1,6 +1,7 @@
 import { usePage } from "@inertiajs/react";
 import { Sidebar } from "flowbite-react";
 import { HiOutlineChartPie } from "react-icons/hi";
+import { ImHome2 } from "react-icons/im";
 
 export default function BackpageSidebar({ isVisible }) {
     const { auth } = usePage().props;
@@ -23,6 +24,11 @@ export default function BackpageSidebar({ isVisible }) {
                             href="/dashboard"
                             label="Dashboard"
                             icon={HiOutlineChartPie}
+                        />
+                        <SidebarMenu
+                            href="/subaks"
+                            label="Subak"
+                            icon={ImHome2}
                         />
                     </Sidebar.ItemGroup>
                 </Sidebar.Items>
