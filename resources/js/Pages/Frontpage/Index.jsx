@@ -1,67 +1,76 @@
 import { appName } from "@/Constants/app";
 import FrontpageLayout from "../../Layouts/FrontpageLayout";
+// 1. Import komponen Leaflet
+import { MapContainer, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css'; // WAJIB: Agar tampilan peta tidak berantakan
+
+// 2. Perbaikan icon marker yang sering tidak muncul di React
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 export default function HomePage() {
+    // Koordinat pusat (Contoh: Bali)
+    const center = [-8.4095, 115.1889];
+
     return (
         <FrontpageLayout>
             <section className="bg-white pt-20">
                 <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-12">
-                    <a
-                        href="https://www.kadekwidiana.my.id"
-                        target="_blank"
-                        className="inline-flex items-center justify-between px-1 py-1 pr-4 text-sm text-gray-700 bg-gray-100 rounded-full mb-7 hover:bg-gray-200"
-                        role="alert"
-                    >
-                        <span className="text-xs bg-primary/70 rounded-full text-white px-4 py-1.5 mr-3">
-                            Lorem
-                        </span>{" "}
-                        <span className="text-sm font-medium">
-                            Lorem, ipsum dolor.
-                        </span>
-                        <svg
-                            className="w-5 h-5 ml-2"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clipRule="evenodd"
-                            ></path>
-                        </svg>
-                    </a>
+                    {/* ... (Konten Hero Kamu) ... */}
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
                         {appName}
                     </h1>
                     <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-20">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Officia ducimus, dolorem ipsa culpa nobis magni
-                        repudiandae expedita amet, dolore dolor corporis harum
-                        beatae blanditiis tempora atque architecto facilis
-                        dolorum sequi!
+                        Sistem Informasi Pemetaan dengan fitur Base Layer dan Marker.
                     </p>
-                    <div className="flex flex-col mb-0 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                        <a
-                            href="https://kadekwidiana.my.id"
-                            target="_blank"
-                            className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-center text-white bg-primary/80 rounded-lg hover:bg-primary focus:ring-4 focus:ring-cyan-300"
-                        >
-                            Lihat Website
-                            <svg
-                                className="w-5 h-5 ml-2 -mr-1"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                ></path>
-                            </svg>
-                        </a>
-                    </div>
+                </div>
+            </section>
+
+            {/* SECTION PETA */}
+            <section className="pb-20 px-4">
+                <div className="max-w-screen-xl mx-auto border-4 border-white shadow-2xl rounded-xl overflow-hidden" style={{ height: '500px' }}>
+                    <MapContainer center={center} zoom={10} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
+
+                        <LayersControl position="topright">
+                            {/* Base Layer 1: OpenStreetMap */}
+                            <LayersControl.BaseLayer checked name="OpenStreetMap">
+                                <TileLayer
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                />
+                            </LayersControl.BaseLayer>
+
+                            {/* Base Layer 2: Google Satellite */}
+                            <LayersControl.BaseLayer name="Satelit (Google)">
+                                <TileLayer
+                                    attribution='&copy; Google Maps'
+                                    url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                                />
+                            </LayersControl.BaseLayer>
+
+                            {/* Base Layer 3: Terrain */}
+                            <LayersControl.BaseLayer name="Medan (Terrain)">
+                                <TileLayer
+                                    attribution='&copy; Google Maps'
+                                    url="https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
+                                />
+                            </LayersControl.BaseLayer>
+                        </LayersControl>
+
+                        {/* Menambahkan Marker */}
+                        <Marker position={center}>
+                            <Popup>
+                                <strong>Titik Pusat Bali</strong> <br />
+                                Kamu bisa mengubah teks ini sesuai kebutuhan.
+                            </Popup>
+                        </Marker>
+
+                    </MapContainer>
                 </div>
             </section>
         </FrontpageLayout>
